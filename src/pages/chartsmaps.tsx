@@ -1,5 +1,6 @@
 import React from 'react'
 import Linechart from '../components/chartsmaps/linechart'
+import Worldmap from '../components/chartsmaps/worldmap'
 
 const Chartsmaps = ()=>{
     return(
@@ -8,6 +9,7 @@ const Chartsmaps = ()=>{
                 Add Contact
             </h1>
             <Linechart/>
+            <Worldmap/>
             
         </div>
     )
