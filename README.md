@@ -34,8 +34,14 @@ You will also see any lint errors in the console.
 
 ## API Endpoint
 The application uses a third-party API to fetch COVID-19 data. The API endpoint used for fetching overall COVID-19 data is: 
+
+
 'https://disease.sh/v3/covid-19/historical/all?lastdays=all' - to fetch records with specific dates
+
+
 'https://disease.sh/v3/covid-19/countries'- to fetch Country Specific data of cases:
+
+
 'https://disease.sh/v3/covid-19/all' - to fetch World wide data of cases.  
 
 ## Usage
