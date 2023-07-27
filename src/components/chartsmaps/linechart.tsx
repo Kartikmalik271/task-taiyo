@@ -95,13 +95,9 @@ const Linechart: React.FC = () => {
   
 
   return (
-    <div >
+    <div>
       <h2>COVID-19 Statistics</h2>
-      <div > {/* Set the width and hide horizontal overflow */}
-        <div className='overscroll-contain overflow-x-auto'> {/* Set the fixed width and enable horizontal scrolling */}
-          <Line data={chartData} options={options} />
-        </div>
-      </div>    
+      <Line data={chartData}  options={options}/>
     </div>
   );
 };

@@ -40,7 +40,7 @@ const Worldmap: React.FC = () => {
   }
   console.log("countriesData:", countriesData);
   return (
-    <div className="overscroll-contain overflow-auto w-1/2 h-1/2">
+    <div className="overscroll-contain overflow-auto w-full h-full">
     <MapContainer center = { [ 20.593683, 78.962883 ] } zoom = { 3 } scrollWheelZoom={false}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
