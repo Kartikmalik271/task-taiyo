@@ -23,6 +23,6 @@
     "types": ["react", "react-dom", "react-router-dom"]
   },
   "include": [
-    "src/"
+    "src/*"
   ]
 }
