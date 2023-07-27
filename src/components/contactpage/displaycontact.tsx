@@ -136,26 +136,39 @@ const Displaycontact: React.FC<DataProps> =({item})=>{
       
            :
             <>
-                    <div className=" rounded overflow-hidden shadow-lg p-2 mt-4 bg-slate-100 mx-2 text-center">
-                    <div className="font-bold text-xl mb-2">{item.fname} <br/> {item.lname}</div>
-                    <p className="text-gray-700 text-base">
-                    {item.status===true ? <p>active</p>:<p>inactive</p>}
-                    </p>
-                
-                    <button className="inline-block bg-red-400 rounded px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 mt-3 " onClick={() => {
-                        dispatch(removeContact(item.id));
-                        }}>delete
-                    </button>
-                    <button className="inline-block bg-blue-400 rounded px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 mt-3 " onClick={() => {
-                        setFname(item.fname)
-                        setLname(item.lname)
-                        setId(item.id)
-                        setStatus(item.status)
-                        setShowEdit(true)
-                        }}>edit
-                
-                    </button>
-                </div>
+            <div className="rounded-lg overflow-hidden shadow-md p-4 mt-4 bg-gray-50 mx-2 text-center">
+  <div className="font-bold text-2xl mb-2 text-gray-800">
+    {item.fname} {item.lname}
+  </div>
+  <p className={`text-lg ${item.status ? 'text-green-500' : 'text-red-500'}`}>
+    {item.status ? 'active' : 'inactive'}
+  </p>
+
+  <div className="flex justify-center mt-4">
+    <button
+      className="bg-red-500 hover:bg-red-700 text-white px-3  rounded-md mr-2 focus:outline-none focus:ring focus:ring-red-300 transition-colors duration-300"
+      onClick={() => {
+        dispatch(removeContact(item.id));
+      }}
+    >
+      Delete
+    </button>
+
+    <button
+      className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-1 rounded-md ml-2 focus:outline-none focus:ring focus:ring-blue-300 transition-colors duration-300"
+      onClick={() => {
+        setFname(item.fname);
+        setLname(item.lname);
+        setId(item.id);
+        setStatus(item.status);
+        setShowEdit(true);
+      }}
+    >
+      Edit
+    </button>
+  </div>
+</div>
+
             </>
             }
         </>

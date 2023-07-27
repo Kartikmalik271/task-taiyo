@@ -2,23 +2,21 @@ import React from "react";
 import Addcontact from "../components/contactpage/addcontact";
 import Displaycontact from '../components/contactpage/displaycontact'
 
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store";
-import { addContact, removeContact, setContactStatus } from "../redux/contactSlice";
+import {  useSelector } from "react-redux";
+import {  RootState } from "../redux/store";
 
-const Contactpage =()=>{
+const Contactpage:React.FC =()=>{
 
     const contactList = useSelector((state: RootState) => state);
 
 
     return(
         <div className="h-screen overflow-y-auto">
-            <h1 className="text-3xl font-bold underline text-red-600 mb-5 ">
-                Add Contact
+            <h1 className="text-3xl font-bold underline text-green-600 text-center mb-5 pt-20 lg:pt-5">
+                Page to Manage All COntacts!!!
             </h1>
             <Addcontact/>
-            <div className="container mx-auto">
-                
+            <div className="container mx-auto ">
                     {
                         contactList.length>0 ?
                         <>
@@ -31,9 +29,13 @@ const Contactpage =()=>{
                         :
                         <>
                         <div className="grid grid-cols-1  mt-5 mx-auto">
-                            <div className="lg:w-1/2 p-5  mx-2 text-center mx-auto">
-                                <p className=" text-slate-400 rounded overflow-hidden shadow-md p-5">No Contact Found<br/>Please add contact from<br/>Create contact button</p>
-                            </div>
+                        <div className="bg-slate-100 lg:w-1/2 p-5 mx-2 text-center mx-auto">
+                        <div className="bg-white rounded-lg overflow-hidden shadow-lg p-5">
+                            <p className="text-slate-500 text-lg font-semibold mb-4">No Contact Found</p>
+                            <p className="text-slate-600 mb-3">Please add a contact from the "Create contact" button.</p>
+                            
+                        </div>
+                        </div>
                         </div>
                         </>
                     }

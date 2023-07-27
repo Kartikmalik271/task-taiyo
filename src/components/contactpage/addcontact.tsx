@@ -21,8 +21,8 @@ const Addcontact =()=>{
         <>
         <div className="grid grid-col-12 justify-center">
             <button
-            className="bg-blue-200 text-black active:bg-blue-500 
-                        font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1
+            className="bg-blue-200 text-black active:bg-green-100 
+                        font-bold px-6 py-3 rounded shadow hover:shadow-lg hover:bg-blue-400 outline-none focus:outline-none mr-1 mb-1
                         m-auto"
             type="button"
             onClick={() => setShowModal(true)}

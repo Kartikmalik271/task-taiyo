@@ -1,5 +1,4 @@
-// LineChart.tsx
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import moment from 'moment';
 import {
   Chart as ChartJS,
@@ -12,6 +11,8 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { useQuery } from 'react-query';
+import {LINEAPI} from '../../utils/urls'
 
 ChartJS.register(
   CategoryScale,
@@ -22,6 +23,22 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
+const fetchCovidData = async () => {
+  const response = await fetch(LINEAPI);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  const data = await response.json();
+  console.log('hey',data)
+  return data as CovidData;
+};
+
+interface CovidData {
+  cases: { [date: string]: number };
+  deaths: { [date: string]: number };
+  recovered: { [date: string]: number };
+}
 
 export const options = {
   responsive: true,
@@ -35,34 +52,26 @@ export const options = {
     },
   },
 };
-  
-
-
-interface CovidData {
-  cases: { [date: string]: number };
-  deaths: { [date: string]: number };
-  recovered: { [date: string]: number };
-}
 
 const Linechart: React.FC = () => {
-  const [data, setData] = useState<CovidData | null>(null);
+  const { data, isLoading, error } = useQuery<CovidData>('covidData', fetchCovidData);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=all');
-        const data = await response.json();
-        setData(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <div className="text-gray-600 font-semibold text-xl animate-pulse">Loading...</div>
+      </div>
+    );
+  }
+  
 
-    fetchData();
-  }, []);
+  if (error) {
+    return <div>Error fetching data</div>;
+  }
 
+  // Ensure data is defined before using it
   if (!data) {
-    return <div>Loading...</div>;
+    return <div>No data available</div>;
   }
 
   // Format the data for the chart
@@ -91,14 +100,13 @@ const Linechart: React.FC = () => {
       },
     ],
   };
-  
-  
 
   return (
-    <div>
-      <h2>COVID-19 Statistics</h2>
-      <Line data={chartData}  options={options}/>
+    <div className='container mx-auto p-3 bg-white rounded-lg shadow-lg'>
+      <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">COVID-19 Statistics</h2>
+      <Line data={chartData} options={options} />
     </div>
+
   );
 };
 
