@@ -9,7 +9,7 @@ function App() {
             {/* Router component wraps the entire application */}
             <Router>
                 {/* Sidebar */}
-                <div className="fixed w-screen lg:w-auto col-span-7 top-0 left-0 lg:static lg:col-span-1 bg-blue-300 lg:h-screen text-center">
+                <div className="fixed w-screen shadow-lg lg:w-auto col-span-7 top-0 left-0 lg:static lg:col-span-1 bg-blue-200 lg:h-screen text-center">
                     <div className="nav-body lg:flex lg:items-center lg:h-screen">
                         <nav className="p-4 lg:pt-0">
                             <ul className="flex lg:block justify-center">

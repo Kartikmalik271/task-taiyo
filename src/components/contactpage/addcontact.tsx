@@ -8,6 +8,8 @@ const Addcontact: React.FC = () => {
   // State variables for handling form input
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [status, setStatus] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -95,6 +97,38 @@ const Addcontact: React.FC = () => {
                     >Last Name</label
                     >
                   </div>
+                  <div className="relative mb-3">
+                    <input
+                      type="email"
+                      className="peer m-0 block h-[58px] w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
+                      id="floatingInput"
+                      name='email'
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+
+                    />
+                    <label
+                      htmlFor="floatingInput"
+                      className="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                    >Email </label
+                    >
+                  </div>
+                  <div className="relative mb-3">
+                    <input
+                      type="text"
+                      className="peer m-0 block h-[58px] w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
+                      id="floatingInput"
+                      name='phone'
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+
+                    />
+                    <label
+                      htmlFor="floatingInput"
+                      className="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                    >Phone Number</label
+                    >
+                  </div>
                   <div className="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
                     <input
                       type="radio"
@@ -130,13 +164,19 @@ const Addcontact: React.FC = () => {
                     className="inline-block bg-green-800 rounded p-3  text-sm font-semibold text-white mr-2 mb-2 mt-3 "
                     onClick={() => {
                       // Dispatch the action to add the contact to Redux store
-                      dispatch(addContact(fname, lname, status));
+                      if (fname.length>0 || lname.length>0 || phone.length>0 || email.length>0){
+                      dispatch(addContact(fname, lname,phone,email, status));
                       // Clear the input fields and reset status to false
                       setFname("");
                       setLname("");
+                      setEmail('');
+                      setPhone('');
                       setStatus(false);
                       // Close the modal
                       setShowModal(false);
+                      }else{
+                        alert('values cannot be empty')
+                      }
                     }}
                   >
                     Add

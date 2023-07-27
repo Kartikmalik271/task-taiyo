@@ -16,11 +16,13 @@ const contactSlice = createSlice({
         state.push(action.payload);
       },
       // Prepare function to create the payload for addContact action
-      prepare: (fname: string, lname: string, status: boolean) => ({
+      prepare: (fname: string, lname: string,phone: string,email: string, status: boolean) => ({
         payload: {
           id: uuidv4(), // Generate a unique ID using uuidv4 for the new contact
           fname,
           lname,
+          phone,
+          email,
           status,
         } as Contact,
       }),
@@ -33,12 +35,14 @@ const contactSlice = createSlice({
     // Reducer to update the status and name of a contact in the state
     setContactStatus(
       state,
-      action: PayloadAction<{ status: boolean; id: string; fname: string; lname: string }>
+      action: PayloadAction<{ status: boolean; id: string; fname: string; lname: string;phone: string; email: string }>
     ) {
       const index = state.findIndex((contact) => contact.id === action.payload.id);
       state[index].status = action.payload.status; // Update the status of the contact
       state[index].fname = action.payload.fname; // Update the first name of the contact
       state[index].lname = action.payload.lname; // Update the last name of the contact
+      state[index].phone = action.payload.phone; // Update the phone number of the contact
+      state[index].email = action.payload.email; // Update the email of the contact
     },
   },
 });
