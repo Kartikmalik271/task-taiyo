@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Contact } from "../models/Contact";
+import { Contact } from "../Models/Contact";
 import { v4 as uuidv4 } from "uuid";
 
 const initialState = [] as Contact[];
