@@ -3,7 +3,7 @@
 This is a simple Contact Management application built using React and Redux. It allows users to manage their contacts and visualize COVID-19 data on charts and maps.
 
 ### Hosted Link
-'link'
+- Link: https://task-taiyo.vercel.app/
 
 ## Prerequisites
 
