@@ -12,8 +12,9 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useQuery } from 'react-query';
-import {LINEAPI} from '../../utils/urls'
+import { LINEAPI } from '../../utils/urls';
 
+// Register the necessary Chart.js components for the Line chart
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -24,22 +25,24 @@ ChartJS.register(
   Legend
 );
 
+// Function to fetch Covid data from the specified API
 const fetchCovidData = async () => {
   const response = await fetch(LINEAPI);
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
   const data = await response.json();
-  console.log('hey',data)
   return data as CovidData;
 };
 
+// Interface to define the structure of the Covid data
 interface CovidData {
   cases: { [date: string]: number };
   deaths: { [date: string]: number };
   recovered: { [date: string]: number };
 }
 
+// Options for configuring the chart appearance and behavior
 export const options = {
   responsive: true,
   plugins: {
@@ -53,17 +56,19 @@ export const options = {
   },
 };
 
+// React functional component to render the Line chart
 const Linechart: React.FC = () => {
+  // Use the 'useQuery' hook to fetch data and handle loading and error states
   const { data, isLoading, error } = useQuery<CovidData>('covidData', fetchCovidData);
 
   if (isLoading) {
     return (
+      // Display a loading message while fetching data
       <div className="flex items-center justify-center h-full">
         <div className="text-gray-600 font-semibold text-xl animate-pulse">Loading...</div>
       </div>
     );
   }
-  
 
   if (error) {
     return <div>Error fetching data</div>;
@@ -102,11 +107,11 @@ const Linechart: React.FC = () => {
   };
 
   return (
-    <div className='container mx-auto p-3 bg-white rounded-lg shadow-lg'>
+    // Render the Line chart component with the chartData and options
+    <div className="container mx-auto p-3 bg-white rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">COVID-19 Statistics</h2>
       <Line data={chartData} options={options} />
     </div>
-
   );
 };
 
