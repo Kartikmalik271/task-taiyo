@@ -164,7 +164,7 @@ const Addcontact: React.FC = () => {
                     className="inline-block bg-green-800 rounded p-3  text-sm font-semibold text-white mr-2 mb-2 mt-3 "
                     onClick={() => {
                       // Dispatch the action to add the contact to Redux store
-                      if (fname.length>0 || lname.length>0 || phone.length>0 || email.length>0){
+                      if (fname.length>0 && lname.length>0 && phone.length>0 && email.length>0){
                       dispatch(addContact(fname, lname,phone,email, status));
                       // Clear the input fields and reset status to false
                       setFname("");
